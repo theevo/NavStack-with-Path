@@ -13,27 +13,45 @@ enum Route {
     case resendQuestion
 }
 
+struct ResultsView: View {
+    var body: some View {
+        VStack { // 8
+            Text("96%")
+                .font(.largeTitle.italic())
+                .navigationTitle("Your Score")
+        }
+    }
+}
+
+struct SettingsView: View {
+    var body: some View {
+        List { // 9
+            Text("Item 1")
+            Text("Item 2")
+        }
+        .navigationTitle("Settings")
+    }
+}
+
+struct ResendQuestionView: View {
+    var body: some View {
+        Button("Resend question") { // 10
+            print("resending!")
+        }
+    }
+}
+
 struct RouteDetail: View {
     var route: Route // 6
     
     var body: some View {
         switch route { // 7
         case .results:
-            VStack { // 8
-                Text("96%")
-                    .font(.largeTitle.italic())
-                    .navigationTitle("Your Score")
-            }
+            ResultsView()
         case .settings:
-            List { // 9
-                Text("Item 1")
-                Text("Item 2")
-            }
-            .navigationTitle("Settings")
+            SettingsView()
         case .resendQuestion:
-            Button("Resend question") { // 10
-                print("resending!")
-            }
+            ResendQuestionView()
         }
     }
 }
