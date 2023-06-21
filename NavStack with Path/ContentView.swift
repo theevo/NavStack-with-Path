@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Route {
+enum Route: Hashable {
     case card(i: Int)
     case results
     case settings
