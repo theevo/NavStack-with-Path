@@ -69,7 +69,7 @@ struct RouteDetail: View {
 }
 
 struct ContentView: View {
-    @State private var path: [Route] = [.results, .settings, .resendQuestion] // 1
+    @State private var path: [Route] = [.card(i: 12)] // 1
 
     var body: some View {
         NavigationStack(path: $path)  // 2
