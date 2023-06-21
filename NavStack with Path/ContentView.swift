@@ -7,16 +7,39 @@
 
 import SwiftUI
 
-struct ColorDetail: View {
-    var color: Color // 6
+enum Route {
+    case results
+    case settings
+    case resendQuestion
+}
+
+struct RouteDetail: View {
+    var route: Route // 6
     
     var body: some View {
-        color.navigationTitle(color.description) // 7
+        switch route { // 7
+        case .results:
+            VStack { // 8
+                Text("96%")
+                    .font(.largeTitle.italic())
+                    .navigationTitle("Your Score")
+            }
+        case .settings:
+            List { // 9
+                Text("Item 1")
+                Text("Item 2")
+            }
+            .navigationTitle("Settings")
+        case .resendQuestion:
+            Button("Resend question") { // 10
+                print("resending!")
+            }
+        }
     }
 }
 
 struct ContentView: View {
-    @State private var path: [Color] = [.green, .mint] // 1
+    @State private var path: [Route] = [.results, .settings, .resendQuestion] // 1
 
     var body: some View {
         NavigationStack(path: $path)  // 2
@@ -25,8 +48,8 @@ struct ContentView: View {
                 Text("Insert any text here")
                     .font(.largeTitle)
             }
-            .navigationDestination(for: Color.self) { color in  // 4
-                ColorDetail(color: color) // 5
+            .navigationDestination(for: Route.self) { route in  // 4
+                RouteDetail(route: route) // 5
             }
             .navigationTitle("Bottom of the Stack")
         }
