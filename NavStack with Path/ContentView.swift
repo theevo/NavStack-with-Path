@@ -8,9 +8,19 @@
 import SwiftUI
 
 enum Route {
+    case card(i: Int)
     case results
     case settings
     case resendQuestion
+}
+
+struct CardView: View {
+    var number: Int
+    
+    var body: some View {
+        Text("\(number)")
+            .font(.largeTitle).bold()
+    }
 }
 
 struct ResultsView: View {
@@ -46,6 +56,8 @@ struct RouteDetail: View {
     
     var body: some View {
         switch route { // 7
+        case .card(let i):
+            CardView(number: i)
         case .results:
             ResultsView()
         case .settings:
